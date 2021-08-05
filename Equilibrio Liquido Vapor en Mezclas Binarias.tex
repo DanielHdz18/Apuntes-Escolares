@@ -19,6 +19,9 @@ NFSSFamily=cmbr]
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage[backend=biber, style=apa]{biblatex} %Biblo APA
+\DeclareLanguageMapping{spanish}{spanish-apa} %Idioma Apa
+\addbibresource{Biblioteca.bib} %Archivo .bib
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage{derivative}
 \usepackage{theorem} %Teoremas
@@ -28,9 +31,10 @@ NFSSFamily=cmbr]
 \usepackage[dvipsnames]{xcolor}
 \declaretheorem[shaded={rulecolor=Cerulean, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Ley}
 \declaretheorem[shaded={rulecolor=Emerald, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Despeje}
+\newcommand{\cita}[1]{(\cite{#1})}
 \begin{document}
 	
 	\section{Equilibrio líquido vapor en disoluciones binarias}
 	
-	Suponga que un recipiente cerrado contiene una mezcla de varios componentes líquidos volátiles que se calienta poco a poco y que la presión se mantiene constante. A medida que se agrega calor, la temperatura de la mezcla aumenta hasta que alcanza una temperatura en la cual se forma la primera burbuja de vapor. Hasta este momento, el proceso es igual al de un líquido puro. Sin embargo, en una mezcla, el vapor generado casi siempre tendrá una composición diferente de la del líquido. Conforme avanza la vaporización, la composición del líquido restante cambia de forma continua, y en consecuencia también varía su temperatura de vaporización.
+	Suponga que un recipiente cerrado contiene una mezcla de varios componentes líquidos volátiles que se calienta poco a poco y que la presión se mantiene constante. A medida que se agrega calor, la temperatura de la mezcla aumenta hasta que alcanza una temperatura en la cual se forma la primera burbuja de vapor. Hasta este momento, el proceso es igual al de un líquido puro. Sin embargo, en una mezcla, el vapor generado casi siempre tendrá una composición diferente de la del líquido. Conforme avanza la vaporización, la composición del líquido restante cambia de forma continua, y en consecuencia también varía su temperatura de vaporización. \cita{felder}
 \end{document}
