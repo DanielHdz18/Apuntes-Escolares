@@ -1,0 +1,18 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cmbright}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[backend=biber, style=apa]{biblatex} %Biblo APA
+\DeclareLanguageMapping{spanish}{spanish-apa} %Idioma Apa
+\addbibresource{Biblioteca.bib} %Archivo .bib
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\nocite{*}
+\begin{document}
+	\printbibliography[title={Libros}]
+\end{document}
