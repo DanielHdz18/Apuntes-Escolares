@@ -1,27 +1,39 @@
 % !TeX TS-program = lualatex
-\documentclass[11pt,letterpaper]{article}
+\documentclass[11pt,letterpaper]{article} %configuraiones de tamaño, tipo de documento y letra
+\usepackage{polyglossia} %configuracion de idioma
+\setmainlanguage{spanish} %elegir idioma español
+\usepackage{fontspec} %paquete para cargar fuentes
+\setsansfont{cmunb}[Extension=.otf,
+UprightFont=*mr,
+ItalicFont=*mo,
+BoldFont=*sr, % semibold
+BoldItalicFont=*so, % semibold oblique
+NFSSFamily=cmbr]
 \usepackage{cmbright} %fuentes
-\usepackage{polyglossia}
-\setmainlanguage{spanish}
-\usepackage{fontspec}
-\defaultfontfeatures{Scale=MatchLowercase}
-%\setmainfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
-%\setsansfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
-\usepackage{microtype}
-\usepackage{amsmath}
-%\numberwithin{equation}{section}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage{derivative}
-\usepackage{theorem} %Teoremas
-\usepackage{shadethm}
-\usepackage{thmtools}
+\defaultfontfeatures{Scale=MatchLowercase} %no alterar fuente matematica
+%\setmainfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}] %fuente Palatino Linotype
+%\setsansfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}] %fuente Palatino Linotype
+\usepackage{microtype} %mejorar generales al documento pdf
+\usepackage{amsmath} %paquete matematicos
+%\numberwithin{equation}{section} %etiquetas ecuaciones en forma seccion.numero
+\usepackage{amsfonts} %fuentes matematicas varias
+\usepackage{amssymb} %simbolos matematicos varios
+\usepackage{graphicx} %incluir graficos 
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry} %paquete de configuracion de margenes
+\usepackage{theorem} %Teoremas basicos
+\usepackage{shadethm} %paquete de sombras para teoremas
+\usepackage{thmtools} %paquete personalizados
 \usepackage{thmbox} %Teoremas en Caja
-\usepackage[dvipsnames]{xcolor}
-\declaretheorem[shaded={rulecolor=Cerulean, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Ley}
-\declaretheorem[shaded={rulecolor=Emerald, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Despeje}
+\usepackage[dvipsnames]{xcolor} %paquete de colores
+\usepackage[backend=biber, style=apa]{biblatex} %Biblo APA
+\DeclareLanguageMapping{spanish}{spanish-apa} %Idioma Apa
+\addbibresource{Biblioteca.bib} %Archivo .bib
+\declaretheorem[shaded={rulecolor=Cerulean, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Ley} %Teorema para leyes
+\declaretheorem[shaded={rulecolor=Emerald, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{Despeje} % Teorema para despejes
+
+%Zona de comandos nuevos
+\newcommand{\cita}[1]{(\cite{#1})}
+
 \begin{document}
 	
 
