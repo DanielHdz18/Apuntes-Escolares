@@ -1,9 +1,15 @@
 % !TeX TS-program = lualatex
 \documentclass[11pt,letterpaper]{article}
-\usepackage{cmbright} %fuentes
 \usepackage{polyglossia}
 \setmainlanguage{spanish}
 \usepackage{fontspec}
+\setsansfont{cmunb}[Extension=.otf,
+UprightFont=*mr,
+ItalicFont=*mo,
+BoldFont=*sr, % semibold
+BoldItalicFont=*so, % semibold oblique
+NFSSFamily=cmbr]
+\usepackage{cmbright} %fuentes
 \defaultfontfeatures{Scale=MatchLowercase}
 %\setmainfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
 %\setsansfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
