@@ -1,0 +1,20 @@
+\usepackage{polyglossia} %configuracion de idioma
+\setmainlanguage{spanish} %elegir idioma español
+\usepackage{fontspec} %paquete para cargar fuentes
+\setsansfont{cmunb}[Extension=.otf,
+UprightFont=*mr,
+ItalicFont=*mo,
+BoldFont=*sr, % semibold
+BoldItalicFont=*so, % semibold oblique
+NFSSFamily=cmbr]
+\usepackage{cmbright} %fuentes
+\usepackage{microtype} %mejorar generales al documento pdf
+\usepackage{amsmath} %paquete matematicos
+\usepackage{amsfonts} %fuentes matematicas varias
+\usepackage{amssymb} %simbolos matematicos varios
+\usepackage{graphicx} %incluir graficos
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry} %paquete de configuracion de margenes
+\usepackage[dvipsnames]{xcolor} %paquete de colores
+\usepackage[backend=biber, style=apa]{biblatex} %Biblo APA
+\DeclareLanguageMapping{spanish}{spanish-apa} %Idioma Apa
+\addbibresource{Biblioteca.bib} %Archivo .bib
