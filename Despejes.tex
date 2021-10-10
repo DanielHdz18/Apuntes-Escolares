@@ -37,7 +37,7 @@
 	
 	En el ejemplo $x^2$, el signo algebraico es $+$ que por convención no se coloca y se sobreentiende, el coeficiente es 1 que al igual que el signo se sobreentiende, que esta multiplicando a la parte literal que es x, que a su vez tiene un exponente, el cual es 2.
 	
-	\subsubsection{Modulos e inversos de las operaciones binarias}
+	\subsubsection{Módulos e inversos de las operaciones binarias}
 	
 	Una gran cantidad de formulas hacen uso de operaciones binarias por lo cual es necesario definirlas y examinar algunas de sus propiedades.
 	
@@ -49,19 +49,33 @@
 		Donde $A$ y $B$ son dos números cualesquiera y $\circ$ un operador binario
 	\end{definición}
 
-	Ejemplos de operaciones binarias son la suma y la multiplicación, cuyos operadores son "$+$" y "$\cdot$", y son binarias ya que ambos necesitan de dos números o entradas para poder generar un resultado. La resta y división son simples extensiones de la suma y la resta y serán definidas más adelante
+	Ejemplos de operaciones binarias son la suma y la multiplicación, cuyos operadores son "$+$" y "$\cdot$", y son binarias ya que ambos necesitan de dos números o entradas para poder generar un resultado. La resta y división son simples extensiones de la suma y la división y serán definidas más adelante.
 	
-	El módulo o elemento neutro de una operación se define como aquel número que cuando se usa como argumento de entrada en una operación binaria junto con otro argumento, el resultado es igual a este otro argumento
+	El módulo o elemento neutro de una operación se define como aquel número que cuando se usa como argumento de entrada en una operación binaria junto con otro argumento, el resultado es igual a este otro argumento.
 	
-	\begin{definición}[Módulo de una operación binaria]
-		Sea $a$ y $n$ un número real cualquiera  
+	\begin{definición}[Módulo de una operación binaria] \label{def:aria}
+		Sea $a$ y $n$ dos números reales cualesquiera  
 		\begin{equation}
-			a \circ n = a \label{aria}
+			a \circ n = a \label{ec:aria}
 		\end{equation}
-		Se define a $n$ como el módulo o elemento neutro de la operación binaria $\circ$
+		Se define a "$n$" como el módulo o elemento neutro de la operación binaria $\circ$
 	\end{definición}
-
-
+	
+	Resulta entonces que por medio de la definición \ref{def:aria}, entonces el elemento neutro de la suma o módulo de la suma es el número 0, ya que $a+0=a$, y el elemento neutro de la multiplicación es 1, ya que $a \cdot 1 = a$
+	
+	\subsubsection{Inversos con respecto a una operación binaria}
+	
+	Se define al inverso de un número con respecto a una operación binaria a aquel, que al ser usado como segundo argumento de la operación binaria junto con el número original el resultado es el elemento neutro de dicha operación.
+	
+	\begin{definición}[Inverso de un número con respecto a una operación binaria]
+		Sea $a$ un número cualquiera y $n$ el elemento neutro de una operación binaria $\circ$
+		\begin{equation}
+			a \circ I = n \label{ec:inv}
+		\end{equation}
+		Entonces "$I$" es el inverso de $a$ con respecto a la operación $\circ$
+	\end{definición}
+	
+	
 	
 	\printbibliography[title={Referencias}]
 	
