@@ -1,0 +1,96 @@
+% !TeX TS-program = lualatex
+\documentclass[11pt,letterpaper]{article}
+\input{preambulo}
+\setlength{\parskip}{1.8 mm}
+\setlength{\parindent}{0mm}
+%Zona de definiciones con teorema
+\usepackage{thmtools}
+\declaretheorem[shaded={rulecolor=Cerulean, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}]{definición}
+\begin{document}
+
+	\section{Introducción}
+	
+	Es un problema común en problemas aplicados la resolución de ciertas formulas o  ecuaciones, a fin de poder encontrar una magnitud desconocida a partir de otra, todo esto mediante un despeje, es decir de una formula ya conocida que contiene al la magnitud desconocida manipularla algebraicamente para tener una expresión para calcular dicha magnitud. El presente texto abordara la manipulación algebraica para lograr dichas expresiones despejadas.
+	
+	\section{Despejes de sumas y multiplicaciones}
+	
+	\subsection{Antecedentes}
+	
+	\subsubsection{Álgebra básica}
+	
+	\begin{definición}
+		Término es una expresión algebraica que consta de uno o varios símbolos numéricos o alfabéticos no separados entre si por un signo $+$ o $-$.
+	\end{definición}
+	
+	\paragraph{Ejemplos de términos.}
+	
+	Las siguientes expresiones separadas por comas, son cada una un solo término $4x^2, \ 5f^4$ mientras que las expresiones siguientes $4x+3, \ 5x+3y, \ -2a-4c$ están compuestas cada una por dos términos, dado que cada expresión contiene un separador $+$ o $-$ que la divide en 2 términos.
+	
+	\paragraph{Partes de un término.} De forma general cada término posee una serie de partes que se pueden nombrar. Las cuales son.
+	
+	\begin{itemize}
+		\item Signo algebraico
+		\item Coeficiente
+		\item Parte Literal
+		\item Exponente
+	\end{itemize}
+	
+	En el ejemplo $x^2$, el signo algebraico es $+$ que por convención no se coloca y se sobreentiende, el coeficiente es 1 que al igual que el signo se sobreentiende, que esta multiplicando a la parte literal que es x, que a su vez tiene un exponente, el cual es 2.
+	
+	\subsubsection{Módulos e inversos de las operaciones binarias}
+	
+	Una gran cantidad de formulas hacen uso de operaciones binarias por lo cual es necesario definirlas y examinar algunas de sus propiedades.
+	
+	\begin{definición}[Operación binaria]
+		Una operación binaria es aquella que necesita de dos argumentos de entrada y un operador para producir un resultado, expresado en términos algebraicos
+		\begin{equation}
+			A \circ B = C
+		\end{equation}
+		Donde $A$ y $B$ son dos números cualesquiera y $\circ$ un operador binario
+	\end{definición}
+
+	Ejemplos de operaciones binarias son la suma y la multiplicación, cuyos operadores son "$+$" y "$\cdot$", y son binarias ya que ambos necesitan de dos números o entradas para poder generar un resultado. La resta y división son simples extensiones de la suma y la división y serán definidas más adelante.
+	
+	El módulo o elemento neutro de una operación se define como aquel número que cuando se usa como argumento de entrada en una operación binaria junto con otro argumento, el resultado es igual a este otro argumento.
+	
+	\begin{definición}[Módulo de una operación binaria] \label{def:aria}
+		Sea $a$ y $n$ dos números reales cualesquiera  
+		\begin{equation}
+			a \circ n = a \label{ec:aria}
+		\end{equation}
+		Se define a "$n$" como el módulo o elemento neutro de la operación binaria $\circ$
+	\end{definición}
+	
+	Resulta entonces que por medio de la definición \ref{def:aria}, entonces el elemento neutro de la suma o módulo de la suma es el número 0, ya que $a+0=a$, y el elemento neutro de la multiplicación es 1, ya que $a \cdot 1 = a$
+	
+	\subsubsection{Inversos con respecto a una operación binaria}
+	
+	Se define al inverso de un número con respecto a una operación binaria a aquel, que al ser usado como segundo argumento de la operación binaria junto con el número original el resultado es el elemento neutro de dicha operación.
+	
+	\begin{definición}[Inverso de un número con respecto a una operación binaria] \label{def:inv}
+		Sea $a$ un número cualquiera y $n$ el elemento neutro de una operación binaria $\circ$
+		\begin{equation}
+			a \circ I = n \label{ec:inv}
+		\end{equation}
+		Entonces "$I$" es el inverso de $a$ con respecto a la operación $\circ$
+	\end{definición}
+	
+	Derivado de la definición \ref{def:inv}, entonces el inverso del número "$a$" con respecto a la suma es el número "$-a$", ya que
+	\begin{equation}
+		a + (-a) = 0
+	\end{equation}
+
+	Al inverso con respecto a la suma de un número también se le conoce como inverso aditivo.
+	
+	Siguiendo con lo descrito en la definición \ref{def:inv}, el inverso de un número "$a$" con respecto a la multiplicación o recíproco de "$a$" es "$a^{-1}$", ya que
+	
+	\begin{equation}
+		a \cdot a^{-1} = 1
+	\end{equation}
+	
+	
+	
+	
+	\printbibliography[title={Referencias}]
+	
+\end{document}
