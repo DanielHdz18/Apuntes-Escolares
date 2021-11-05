@@ -1,5 +1,4 @@
 import os
-import shutil
 
 extensiones = ['.aux', '.bbl', '.bcf', '.blg', '.run.xml', '.synctex.gz', '.log', '.toc', '.tkzfonct.gnuplot', '.out']
 
@@ -15,11 +14,6 @@ def Subcarpetas(lista, dir):
             folder.append(os.path.join(dir,nombre))
     return folder
 
-directorio = Extraer_dir_archivo()
-archivos = os.listdir(directorio)
-directorios = Subcarpetas(archivos,directorio)
-directorios.insert(0,directorio)
-
 def Archivos_eliminables():
     eliminables = []
     for terminaciones in extensiones:
@@ -30,8 +24,14 @@ def Archivos_eliminables():
                     print(f'El archivo {os.path.join(carpetas,archivos)} sera eliminado')
     print(f'Un total de {len(eliminables)} archivos seran quitados')
     return eliminables
+
+directorio = Extraer_dir_archivo()  
+archivos = os.listdir(directorio)
+directorios = Subcarpetas(archivos,directorio)
+directorios.insert(0,directorio)
+
 print('Modulo de limpieza para archivos compilados de latex')
-print('Creado por. Daniel Hernandez')
+print('Creado por Daniel Hernandez')
 print('Buscando archivos')
 print('Desea incluir los pdfs? (S/N)')
 respuesta = input()
@@ -47,7 +47,3 @@ else:
     for file in borrables:
         os.unlink(file)
     print('Archivos eliminado con exito')
-
-    
-
-
