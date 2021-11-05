@@ -1,0 +1,1099 @@
+% !TeX TS-program = lualatex
+\documentclass[11pt,letterpaper,oneside]{book}
+\usepackage{cmbright} %fuentes
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
+\setsansfont{Palatino Linotype}[Scale=1.0, Ligatures={Common,Discretionary,TeX}]
+\usepackage{microtype}
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=1.30cm, right=1.30cm, top=1.30cm, bottom=1.30cm]{geometry}
+\usepackage{enumitem} %Enumeración
+\usepackage[hidelinks]{hyperref}
+\usepackage[babel]{csquotes}
+\usepackage[backend=biber, style=apa]{biblatex} %Biblo APA
+\DeclareLanguageMapping{spanish}{spanish-apa} %Idioma Apa
+\addbibresource{Biblo.bib} %Archivo .bib
+\usepackage{setspace} %para controlar espaciados de linea
+\usepackage{theorem} %Teoremas
+\usepackage{shadethm}
+\usepackage{thmtools}
+\usepackage{thmbox} %Teoremas en Caja
+\usepackage[Rejne]{fncychap} %Estilo de capitulo
+\usepackage{polynom}
+\polyset{style=D}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{babel,angles,quotes,calc}
+\usepackage{tkz-base}
+\usepackage{tkz-euclide}
+\usepackage{tkz-fct}
+\usepackage{float}
+\author{Daniel Alejandro Hernández Del Angel}
+\title{Apuntes de Cálculo Integral}
+\newcommand{\der}[1][x]{\frac{d}{d#1} }
+\newcommand{\inv}[1]{\operatorname{arc#1}}
+\newcommand{\inti}[2]{\int #1 \text{d}#2}
+\newcommand{\intii}[4]{ \int #1 d#4 #3 = #2 +C}
+\renewcommand{\sin}{\operatorname{sen}}
+\declaretheorem[shaded={rulecolor=Cerulean, rulewidth=2pt, bgcolor=White, textwidth=0.99\textwidth}, numberwithin=section]{definición}
+\nocite{*}
+\setlength{\parskip}{2.2 mm}
+\begin{document}
+	
+	\maketitle
+	\tableofcontents
+	
+	\chapter{Introducción}
+	\section{Alcance del texto}
+	\par %ortografía revisada
+	No es de sorprender que un gran número de estudiantes tengan dificultades a lo hora de elegir el método más adecuado para resolver una integral o no saben por dónde comenzar a plantear la solución, pensando en ellos está orientado el contenido de estos apuntes.
+	\par %ortografía revisada
+	El contenido del presente manual está dedicado al estudio de las técnicas de integración que existen, así como ejemplificar cada una de ellas para la aprobación de un curso de ingeniería de cálculo integral. Dividiendo el contenido según el grado de dificultad.
+	\par %ortografía revisada
+	Dado que existen un gran número de integrales de relativamente fácil aparición es necesario estudiar diferentes técnicas y evaluar las ventajas y forma de realizar de cada una de estas técnicas a fin de lograr resolver de forma satisfactoria un gran número de integrales.
+	\par
+	A lo largo del texto encontrara ejemplos resueltos, ejercicios para realizar y anexos de utilidad practica para aprender y practicar los conceptos del cálculo integral.
+	
+	\section{Matemáticas previas al cálculo}
+	\par
+	Para el estudio del cálculo diferencial e integral es necesario contar con una base matemática que abarca temas de álgebra básica, trigonometría, geometría analítica y el estudio de funciones. En la actualidad existen un gran número de libros para este estudio de las matemáticas precálculo y para el presente libro solo ofreceremos breves repasos de estos temas en este capitulo introductorio, el estudiante que se crea preparado puede omitir la lectura de este capítulo y usarlo solo como material de referencia en un futuro.
+	
+	\subsection{Álgebra básica}
+	
+	\par
+	En esta primer sección ofrecemos un repaso al álgebra básica que sera necesaria conocer para la resolución de un gran número de problemas del cálculo integral.
+	
+	\subsubsection{Nomenclatura algebraica} 
+	\begin{definición}
+		Término es una expresión algebraica que consta de uno o varios símbolos numéricos o alfabéticos no separados entre si por un signo $+$ o $-$
+	\end{definición}
+	
+	\paragraph{Ejemplos de términos.}
+	
+	Las siguientes expresiones separadas por comas, son cada una un solo término $4x^2, \ 5f^4$ mientras que las expresiones siguientes $4x+3, \ 5x+3y, \ -2a-4c$ están compuestas cada una por dos términos, dado que cada expresión contiene un separador $+$ o $-$ que la divide en 2 términos.
+	
+	\paragraph{Partes de un término.} De forma general cada término posee una serie de partes que se pueden nombrar. Las cuales son.
+	\begin{itemize}
+		\item Signo algebraico
+		\item Coeficiente
+		\item Parte Literal
+		\item Exponente
+	\end{itemize}
+	
+	\par
+	En el ejemplo $x^2$, el signo algebraico es $+$ que por convención no se coloca y se sobreentiende, el coeficiente es 1 que al igual que el signo se sobreentiende, que esta multiplicando a la parte literal que es x, que a su vez tiene un exponente, el cual es 2. Adicionalmente en el contexto del cálculo solemos referirnos a la parte literal como variable en el caso de las ultimas letras del alfabetos y constantes a las primeras letras.
+	
+	\paragraph{Reducción de términos semejantes }
+	
+	\begin{definición}
+		Términos semejantes son los términos que tienen su parte literal idéntica con el mismo exponente.
+	\end{definición}
+	
+	\paragraph{Ejemplos de términos semejantes.}
+	Son términos semejantes las siguientes triadas de términos (por filas).
+	
+	\begin{flalign*}
+	&&5x^2 && 4x^2 && -4x^2 && \\
+	&&4txz && -0.5txz && -3txz && \\
+	&&4xy && - yx && -\pi xy &&
+	\end{flalign*} 
+	
+	\par
+	Observe que los coeficientes y el signo de cada término pueden ser diferente en cada fila, sin embargo su parte literal es siempre igual y no necesariamente tiene que estar en el mismo orden, por ejemplo los términos $4xy$ y $-yx$ son semejantes, ya que ambos tienen la parte literal idéntica el signo $-$ no se le considera dentro de la parte literal porque puede ser escrito como $-1$, ahora bien el término $-yx$ podría ser reescrito como $-1xy$ para tener mayor claridad al evaluar que son términos semejantes.
+	
+	\par
+	Es posible realizar una reducción si en una expresión existen términos semejantes de tal forma que podamos reducir varios términos a uno solo.
+	
+	\paragraph{Ejemplos de reducción de términos semejantes.} Por ejemplo para la primera triada de los ejemplos si tenemos la expresión $5x^2+4x^2-4x^2$ se puede reducir a un solo término si sumamos algebraicamente los coeficientes de los tres términos y dejamos intacta la parte literal con el exponente correspondiente. Así $5+4+(-4)=5$, por lo cual $5x^2+4x^2-4x^2 = 5x^2$.
+	
+	Para la segunda triada de términos el proceso es similar, $4txz-0.5txz-3txz=(4+(-0.5)+(-3))txz=0.5txz$.
+	
+	En la ultima triada $4xy-yx-\pi xy$, dado que se involucra a un número de infinitos decimales como $\pi$ si queremos reducir a un solo término haremos lo siguiente, expresamos la suma algebraica de los coeficientes de cada uno de los términos de la siguiente manera $4+(-1)+(-\pi )$, como ya hemos mencionado $\pi$ al tener infinitos decimales no se puede sumar directamente a números diferentes a el, para realizar la reducción podemos dejar indicada la suma, es decir simplificamos la parte que si podemos sumar; $4+(-1)=4-1=3$ por lo tanto escribimos $3-\pi$ y colocamos a esta suma por coeficiente de la parte literal con sus respectivos exponentes, $4xy-yx-\pi xy = (3-\pi)xy$ esto nos ahorrara pasos en los siguientes ejercicios.
+	
+	\subsubsection{Leyes de los exponentes}
+	
+	\par En ocasiones necesitamos abreviar una multiplicación de un mismo factor repetidas veces, dicha operación se llama potenciación y se define de la siguiente manera
+	
+	\begin{definición}[Potenciación]
+	Sea $x$ y $n$ números reales cualesquiera la potenciación se define como sigue:
+		\begin{equation*}
+		x^n = \left\lbrace
+		\begin{array}{lc}
+			\underbrace{x\cdot x \cdot x \cdot \ldots \cdot x }_{n \text{ veces}}& \text{ Si } n>0 \\
+			1& \text{ Si } n=0 \\
+			\dfrac{1}{x^{-n}}& \text{ Si } n<0
+		\end{array} 
+		\right. 
+		\end{equation*} 
+		\\
+		Donde $x$ se conoce como base y $n$ como exponente, $x^n$ se lee como la potencia n-ésima de $x$ o $x$ elevado a la $n$
+	\end{definición}
+	
+	\par
+	La potenciación tiene un conjunto de leyes o propiedades que podemos enumerar a continuación.
+	
+	\begin{enumerate}[series=LE]
+		\item Al multiplicar dos potencias con la misma base, sume los exponentes. $x^n \cdot x^m = x^{n+m} $
+		\item Al dividir dos potencias con la misma base, reste los exponentes. $\frac{x^n}{x^m} = x^{n-m} $
+		\item Al elevar una potencia a otra potencia, multiplique los exponentes. $(x^n)^m=x^{n \cdot m}$
+		\item Elevar un producto a una potencia n-ésima eleva cada factor a su n-ésima potencia. $(x\cdot y)^n= x^n \cdot y^n$
+		\item Elevar una fracción a una potencia n-ésima eleva el numerador y el denominador a la n-ésima potencia. $(\frac{x}{y})^n = \frac{x^n}{y^n}$
+	\end{enumerate}
+
+
+	\paragraph{Evitando errores comunes}
+	Una aclaración importante que vale la pena dar es que $-x^n$ y $(-x)^n$ no son expresiones iguales cuando $n$ es un número par. En el primer caso el exponente solo afecta a $x$ y no incluye al signo $-$, no así en el segundo caso que incluye a ambos. Para dejar mas en claro, podemos tomar un ejemplo númerico.
+	\begin{align*}
+	-2^4 &= -(2\cdot 2 \cdot 2\cdot 2) &=-16 \\
+	(-2)^4 &=(-2)\cdot (-2) \cdot (-2) \cdot (-2) &=16 \phantom{-}
+	\end{align*}
+
+	\par Observe de todas las propiedades son aplicables en productos y no aparece ninguna suma o resta en estas. Otro error común es confundir estas propiedades aplicables exclusivamente en productos, aplicándolas en situaciones de suma. Estas \textbf{NO} son propiedades de los exponentes:
+	
+	\begin{itemize}
+		\item No es una propiedad de los exponentes. $x^n+x^m=x^{n+m}$
+		\item No es una propiedad de los exponentes. $x^n-x^m=x^{n-m}$
+	\end{itemize}
+
+	\par Entonces la expresión $x^n\pm x^m$ no se puede simplificar siempre que $n\neq m$
+		
+	\subsubsection{Radicales}
+
+	\par
+	Todas las propiedades dadas hasta el momento se cumplen cuando $x$ y $n$ son números reales, específicamente para cuando el exponente de un término es racional o fraccionario existe una simbología alterna a su forma en notación exponencial, dicha notación hace uso de un símbolo llamado radical el cual se representa de la siguiente manera $\sqrt{~}$.
+	
+	\par Para ello definiremos primero una nueva operación llamada radicación y el concepto de raíz n-ésima.
+	
+	\begin{definición}[Radicación]
+		Sea $x$ un número real cualquiera y $n$ un número entero mayor que 0 se define la radicación como sigue:
+		\begin{equation*}
+		\sqrt[n]{x} = b, \text{ Que implica que } b^n=x  
+	\end{equation*}	
+		Donde n se conoce como el índice de la raíz y x como el radicando. La expresión anterior se lee como la raíz n-ésima de x
+	\end{definición}
+
+	\par Ahora bien hemos dicho que la raíz n-ésima es una simbología alterna a la notación exponecial, estas dos formas se relacionan de manera que  $x^{\frac{1}{n}} = \sqrt[n]{x}$.
+	\par Esta nueva notación nos permite dar nuevas leyes validas para la notación con exponentes fraccionarios o usando radicales.
+	
+	\begin{enumerate}[resume*=LE]
+		\item Equivalencia entre forma exponencial y radical. $x^{\frac{p}{q}} = \sqrt[q]{x^p}$
+		\item Para raíces con índice par el radicando debe ser mayor o igual que 0. $\sqrt[n]{x} \text{, Si n es par entonces x $\geq$ 0} $
+		\item La raíz n-ésima de la potencia n-ésima de un término cuando n es par es el valor absoluto del término. $\sqrt[n]{x^n} = |x|, \text{ Con n par}$
+		\item La raíz n-ésima de la potencia n-ésima de un término cuando n es impar es el término mismo. $\sqrt[n]{x^n} = x$
+	\end{enumerate}		
+	
+	\subsubsection{División de polinomios}
+	
+	\par En ocasiones necesitamos simplificar una expresión realizando una división de polinomios en el proceso. Dicha división se puede realizar mediante dos formas; La llamada división larga y la división sintética.
+	
+	\par Sean dos polinomios $P(x)$ y $S(x)$ con grado $m$ y $n$ respectivamente, para poder realizar la división $\frac{P(x)}{S(x)}$ es necesario que $m \geq n$.
+	
+	\par La expresión general de la división de dos polinomios es como sigue:
+	\begin{equation}
+	\frac{P(x)}{S(x)} = Q(x) + \frac{R(x)}{S(x)} \label{divp}
+	\end{equation}
+	
+	\par De donde $P(x)$ es el dividendo, $S(x)$ el divisor, $Q(x)$ es el cociente y $R(x)$ es el residuo de la división.
+	
+	
+	\paragraph{División larga de polinomios} Para ejemplificar el procedimiento de la división larga tomemos un ejemplo donde $P(x)=x^4+x^3$ y $Q(x)=x^2-4$, esta división es posible ya que el grado del divisor es menor al del dividendo. Antes de iniciar el procedimiento es necesario ordenar los polinomios a dividir en forma descendente, es decir primero el término con mayor exponente, luego el término con el segundo mayor exponente, así hasta llegar al ultimo término. En este caso los polinomios ya están ordenados.
+	
+	\par El procedimiento para la división larga de polinomios tiene la siguente forma.
+
+	\begin{equation*}
+	\polylongdiv[stage=1]{x^4+x^3}{x^2-4}
+	\end{equation*}	
+
+	\par ~ 
+	
+	\par Se ha dejado espacio intencionalmente entre el dividendo y el divisor ya que debe de haber espacio para que se puedan escribir los términos de grado dos, uno y cero que hacen falta al polinomio $P(x)$, siempre se debe dejar espacio para todos los términos faltantes sin excepción. El espacio debajo del divisor es donde se colocaron los términos del cociente o resultado de la división.
+	
+	
+	\par El siguiente paso es calcular la división entre el primer término del dividendo ($x^4$) y el primer término del divisor ($x^2$), dicha división se puede realizar aplicando las leyes de los exponentes vistas anteriormente y obtenemos $x^2$, dicho resultado se coloca en el espacio del cociente.
+		\begin{equation*}
+		\polylongdiv[stage=2]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+
+	\par ~
+	
+	\par Ahora multiplicamos el primer miembro del cociente ($x^2$) por todo el divisor ($x^2-4$), lo que es igual a $x^4-4x^2$, ahora multiplicamos por -1 este resultado, lo que es equivalente a cambiar el signo de cada término de este resultado, por lo cual obtenemos $-x^4+4x^2$, ahora debemos emparejar los términos semejantes de este resultado con los del dividendo, el término $-x^4$ es semejante al término $x^4$ del dividendo, por lo que se coloca debajo de este, el término $4x^2$ no tiene un término semejante así que se coloca debajo de donde debería de ir el término cuadrático.
+
+		\begin{equation*}
+		\polylongdiv[stage=3]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par Seguido realizamos las operaciones que simplifiquen los términos semejantes que hemos emparejado, en este caso la única operación es $x^4$ (del dividendo) menos $-x^4$ (del término debajo), dando como resultado 0, el término con exponente tres y dos no se modifican y pasan directos al resultado que se coloca como el resultado de una suma o resta.
+		\begin{equation*}
+		\polylongdiv[stage=4]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par El resultado $x^3+4x^2$ se puede ver como un nuevo dividendo o uno provisional a fines del procedimiento y se repite el mismo proceso anterior. Dividir el primer término de este dividendo provisional ($x^3$) entre el primer término del divisor ($x^2$) y se obtiene $x$, este término se coloca como segundo término del cociente.
+		\begin{equation*}
+		\polylongdiv[stage=5]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par Nuevamente multiplicamos este nuevo término del cociente por todo el divisor; $x \cdot (x^2-4)$, dando como resultado $x^3-4x$, emparejamos los términos semajantes de este resultado con los del dividendo provisional con el signo cambiado.
+	
+		\begin{equation*}
+ 		\polylongdiv[stage=6]{x^4+x^3}{x^2-4}	
+		\end{equation*}
+	
+	\par Y seguido realizamos la simplificación de términos semejantes.
+	
+		\begin{equation*}
+		\polylongdiv[stage=7]{x^4+x^3}{x^2-4}	
+		\end{equation*}
+	
+	\par Usamos $4x^2+4x$ como dividendo provisional y efectuamos la división de los primeros términos del dividendo en turno con el divisor; $\frac{4x^2}{x^2} = 4$.
+	
+		\begin{equation*}
+		\polylongdiv[stage=8]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par Multiplicamos $4\cdot (x^2+4)$, y cambiamos el signo de los términos del resultado de esta multiplicación para así emparejar términos semejantes.
+		\begin{equation*}
+		\polylongdiv[stage=9]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par Simplificamos términos.
+	
+		\begin{equation*}
+		\polylongdiv[stage=10]{x^4+x^3}{x^2-4}	
+		\end{equation*}	
+	
+	\par Hemos obtenido como dividendo provisional una expresión cuyo grado es menor que el del divisor, por lo tanto la división ha terminado. Así que retomando la expresión \eqref{divp}. Cuando $P(x)=x^4+x^3$ y $S(x)=x^2-4$, $ Q(x)= x^2+x+4$ y $R(x)= 4x+16$, que expresamos de este modo.
+	
+	\begin{equation*}
+		\frac{x^4+x^3}{x^2-4} = x^2+x+4 + \frac{4x+16}{x^2-4}
+	\end{equation*}
+
+	\paragraph{División sintética} Este ha sido el procedimiento para la división larga de polinomios. Ahora bien toca hablar de un método más, la llamada división sintética, consiste en un procedimiento similar donde las partes literales se abrevian y se usan unicamente los coeficientes para ahorrar la escritura continua de las partes literales. Al igual que en la división larga se coloca los polinomios 
+	
+	\par Esta división es útil cuando necesitamos dividir un polinomio entre un binomio de la forma $x \pm \alpha$, cuando $\alpha$ es una constante. Nuevamente tomaremos un ejemplo para ilustrar este procedimiento, considere $P(x)=x^3-x+3$ y $S(x)=x-6$. Calcularemos $\frac{P(x)}{S(x)}$ lo cual resulta en el siguiente esquema
+	
+	\begin{equation*}
+	\polyhornerscheme[x=6,stage=1]{x^3-x+3}
+	\end{equation*}
+	
+	\par En la parte derecha de se coloca el valor que anula al polinomio divisor $S(x)$, valor que obtenemos igualando a 0 y despejando x.
+	
+	\begin{align*}
+		x-6&=0  \\
+		x&=6
+	\end{align*}
+	
+	\par Por lo cual 6 es el valor que colocamos, a la izquierda colocamos los coeficientes de cada término, como no tenemos término cuadrático colocamos un 0 como coeficiente, lo mismo para los demás términos que no esten, se acompletan con 0 sus coeficientes.
+	
+	\par En el siguiente paso el primer coeficiente se baja directamente al resultado de esta manera.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=2,tutor=true]{x^3-x+3}
+		\end{equation*}	
+
+	\par El lugar donde se ha colocado el 1 es la fila de los coeficientes del resultado, este 1 se multiplica por 6 y se coloca por encima de la linea y a la derecha del primer coeficiente del resultado
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=3,tutor=true]{x^3-x+3}
+		\end{equation*}
+	
+	\par Luego se realiza una suma entre el segundo coeficiente del divisor y el coeficiente inmediatamente debajo de el.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=4,tutor=true]{x^3-x+3}
+		\end{equation*}
+	
+	\par Nuevamente se multiplica el segundo coeficiente del resultado por el valor que anula al polinomio divisor.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=5,tutor=true]{x^3-x+3}
+		\end{equation*}
+
+	\par Y nuevamente realizamos la suma indicada.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=6,tutor=true]{x^3-x+3}
+		\end{equation*}
+
+	\par Ahora multiplicamos el 35 por el valor que anula a $S(x)$ y lo colocamos debajo del siguiente espacio en blanco de la linea de sumas.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=7,tutor=true]{x^3-x+3}
+		\end{equation*}
+
+	\par Realizamos la suma indicada.
+	
+		\begin{equation*}
+		\polyhornerscheme[x=6,stage=8,tutor=true]{x^3-x+3}
+		\end{equation*}
+	
+	\par De esta manera hemos terminado la división, pero en este caso no es evidente donde encontramos el resultado, en la fila de resultados tenemos ya los coeficientes pero de momento no sabemos cuales son sus partes literales, es un hecho que dividir a un polinomio $P(x)$ entre un monomio $S(x)$ produce siempre un resultado $Q(x)$ cuyo grado es una unidad inferior al grado de $P(x)$. Para este ejemplo tenemos que entonces si el grado de $P(x)$ es 3, entonces el grado de $Q(x)$ es 2, por lo tanto podemos acomodar los coeficientes para tener un polinomio de segundo grado, entonce el resultado es $1x^2+6x+35$ y como vemos nos ha sobrado el 213, ese número es el residuo de nuestra división y funciona como un polinomio de grado 0. Entonces podemos expresar el resultado de esta forma.
+	
+	\begin{equation*}
+		\frac{x^3-x+3}{x-6} = x^2+6x+35 + \frac{213}{x-6}
+	\end{equation*}
+
+	\subsection{Trigonometría}
+	
+	\par Continuando con el repaso toca hablar sobre la trigonometría.
+	
+	\subsubsection{Relaciones trigonometricas}
+	
+	\par Considere un triángulo rectángulo con $\theta$ como el ángulo entre el lado más largo del triángulo y un lado cualquiera. Llamando hipotenusa (hip) al lado mas largo, cateto adyacente (ady) al lado que sirve de apoyo al ángulo y al lado inmediatamente enfrente del ángulo como cateto opuesto (op).
+	
+	\begin{center}
+	\begin{tikzpicture}[scale=1.2]
+	\coordinate (A) at (0,0);
+	\coordinate (B) at (3,2);
+	\coordinate (C) at (3,0);
+	\draw (A) -- (B) node[midway,above=3pt,sloped] {Hipotenusa};
+	\draw (B) -- (C) node[midway, right=2 pt] {C. Opuesto};
+	\draw (C) -- (A) node[midway, below=2pt] {C. Adyacente};
+	\draw pic [draw,fill=green!30, angle radius=1.2cm, "$\theta$"]{angle=C--A--B};
+	\end{tikzpicture}
+	\end{center}
+	
+	
+	\begin{definición}[Relaciones Trigonométricas]
+		Definimos con respecto al ángulo $\theta$ las siguientes relaciones trigonométricas
+		\begin{align*}
+			\operatorname{sen}\theta = \frac{op}{hip} && \operatorname{cos}\theta = \frac{ady}{hip} && \operatorname{tan}\theta = \frac{op}{ady} \\
+			\operatorname{csc}\theta = \frac{hip}{op} && \operatorname{sec}\theta = \frac{hip}{ady} && \operatorname{cot}\theta = \frac{ady}{op}
+		\end{align*}
+	\end{definición}
+
+	\subsubsection{Identidades trigonométricas}
+	
+	\par A partir de las relaciones anteriores es posible encontrar las siguientes identidades trigonométricas de gran utilidad en el cálculo.
+	
+	\subsubsection{Identidades trigonométricas recíprocas}
+	
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\sin\ \theta &= \frac{1}{\csc \ \theta} \\
+			\cos\ \theta &= \frac{1}{\sec\ \theta} \\
+			\tan\ \theta &= \frac{1}{\cot\ \theta} \\
+			\csc \ \theta &= \frac{1}{\operatorname{sen}\ \theta}
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\sec\ \theta &= \frac{1}{\cos\ \theta} \\
+			\cot\ \theta &= \frac{1}{\tan \ \theta} \\
+			\tan\ \theta &= \frac{\sin\ \theta}{\cos\ \theta} \\
+			\cot\ \theta &= \frac{\cos\ \theta}{\sin\ \theta}
+		\end{align}
+	\end{minipage}
+	
+	\subsubsection{Identidades trigonométricas fundamentales}
+	
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\operatorname{sen}^2 \ \theta + cos^2\ \theta &= 1 \\
+			\sec^2 \ \theta &= 1+\tan^2 \ \theta \\
+			\csc^2 \ \theta &= 1 + \cot^2 \ \theta
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\operatorname{sen} \ \theta \cdot \csc \ \theta &= 1 \\
+			\cos \ \theta \cdot \sec \ \theta &= 1 \\
+			\tan \ \theta \cdot \cot \ \theta &=1
+		\end{align}
+	\end{minipage}
+
+	\subsubsection{Identidades trigonométricas para suma y diferencia de ángulos}
+	
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\operatorname{sen}(\alpha \pm \beta) &= \operatorname{sen} \ \alpha \cdot \cos \ \beta \pm \cos \ \alpha \cdot \operatorname{sen} \ \beta \\
+			\tan (\alpha \pm \beta) &= \frac{\tan \ \alpha \pm \tan \ \beta}{1 \mp \tan \ \alpha \cdot \tan \ \beta}
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\cos (\alpha \pm \beta) &= \cos \ \alpha \cdot \cos \ \beta \mp \operatorname{sen} \ \alpha \cdot \operatorname{sen} \ \beta \\
+			\cot (\alpha \pm \beta) &= \frac{\cot \ \alpha \cdot \cot \ \beta \mp 1}{\cot \ \beta \pm \cot \ \alpha}
+		\end{align}
+	\end{minipage}
+			
+	\subsubsection{Identidades trigonométricas para dobles y medios ángulos}
+	
+	\begin{minipage}{0.32\textwidth}
+		\begin{align}
+			\sin\ 2\theta &= 2 \sin \theta \cos \theta \\
+			\cos\ 2\theta &= \cos^2 \theta - \sin^2 \theta \\
+			\tan\ 2\theta &= \tfrac{2 \tan \theta}{1-\tan \theta}
+ 		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\begin{align}
+			\sin^2\ \theta &= \tfrac{1}{2} (1-\cos\ 2\theta) \\
+			\cos^2\ \theta &= \tfrac{1}{2} (1 + \cos\ 2\theta ) \\
+			\tan^2 \ \theta &= \tfrac{1- \ \cos 2\theta}{1 +\ \cos 2\theta}
+ 		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.32\textwidth}
+		\begin{align}
+			\sin^2 \tfrac{1}{2} \theta &= \tfrac{1}{2} (1-\cos \theta) \\
+			\cos^2 \tfrac{1}{2} \theta &= \tfrac{1}{2} (1+\cos \theta) \\
+			\tan^2 \tfrac{1}{2} \theta &= \tfrac{1-\ \cos \theta}{\sin \theta}
+		\end{align}
+	\end{minipage}
+
+	\subsubsection{Identidades trigonométricas para producto, suma y diferencia de senos y coseno con distinto ángulo}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\sin \alpha \cos \beta &= \tfrac{1}{2} [\sin (\alpha + \beta) + \sin (\alpha - \beta)] \\
+			\cos \alpha \cos \beta &= \tfrac{1}{2} [\sin (\alpha + \beta) - \sin (\alpha - \beta)] \\
+			\sin \alpha + \sin \beta &= 2 \sin\ (\tfrac{\alpha + \beta}{2}) \cos\ (\tfrac{\alpha - \beta}{2}) \\
+			\sin \alpha - \sin \beta &= 2 \cos\ (\tfrac{\alpha + \beta}{2}) \sin\ (\tfrac{\alpha - \beta}{2})	
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\cos \alpha \cos \beta &= \tfrac{1}{2} [\cos (\alpha + \beta) + \cos (\alpha - \beta)] \\
+			\sin \alpha \sin \beta &= \tfrac{1}{2} [\cos (\alpha - \beta) - \cos (\alpha + \beta)] \\
+			\cos \alpha + \cos \beta &= 2 \cos\ (\tfrac{\alpha + \beta}{2}) \cos\ (\tfrac{\alpha - \beta}{2}) \\
+			\cos \alpha - \cos \beta &= -2 \sin\ (\tfrac{\alpha + \beta}{2}) \sin\ (\tfrac{\alpha - \beta}{2})
+		\end{align}
+	\end{minipage}
+
+\subsubsection{Identidades trigonométricas pares-impares}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\sin (-\theta) &= -\sin \theta \\
+			\cos (-\theta) &= \cos \theta \\
+			\tan (-\theta) &= -\tan \theta
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\csc (-\theta) &= -\csc \theta \\
+			\sec (-\theta) &= \sec \theta \\
+			\cot (-\theta) &= -\cot \theta
+		\end{align}
+	\end{minipage}
+	
+	
+	\section{Cálculo diferencial}
+	
+	\par En esta sección toca repasar, los conceptos básicos del cálculo diferencial; la derivada, su definición, sus notaciones y sus reglas para poder calcularla.
+	\subsection{La derivada}
+	\par La derivada tiene su desarrollo histórico en dos diferentes problemas, en la definición de la pendiente de la recta tangente a una curva y en problema de la velocidad instantánea, para estos apuntes tomaremos el problema de la pendiente de la recta tangente para definir la derivada.
+	
+	\par Empecemos primero por ver la definición de recta secante a una curva, sea $f(x)$ una función arbitraria, y $P(x,y)$ un punto fijo arbitrario sobre la gráfica de $f(x)$, y un punto $Q(x_1,y_1)$ sobre la gráfica de $f(x)$. Para que $P$ y $Q$ estén sobre la gráfica de $f(x)$, podemos expresar los puntos $P$ y$Q$ como $P(x,f(x))$ y $Q(x_1,f(x_1))$
+	
+	\par La coordenada $x_1$ no puede ser cualquier valor, este siempre debe de cumplir la condición de $x_1>x$, entonces podemos escribir a $x_1$ como una suma entre $x$ y un factor llamado incremento en $x$ que podemos designar con la letra $h$, entonces escribimos $x_1=x+h$, por lo cual nuevamente podemos redefinir al punto $Q$ sabiendo que $x_1=x+h$; $Q(x_1,f(x_1))=(x+h,f(x+h))$	
+	\par Entonces la recta secante es la recta que pasa por los puntos $P(x,y)$ y $Q(x+h,f(x+h))$, de forma gráfica se expresa como;
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			\tkzInit[xmin=-2,xmax=7,ymin=-0.5,ymax=4.5]
+			\tkzLabelXY[orig=false]
+			\tkzDrawXY
+			\draw[domain=0:4, color=blue] plot (\x,{0.08*exp(\x)}) node[right] {$f(x)$};
+			\tkzDefPoint(2,{0.08*exp(2)}){P}
+			\tkzDefPoint(3.5,{0.08*exp(3.5)}){Q}
+			\tkzDrawPoints(P,Q)
+			\tkzLabelPoints[below](P)
+			\tkzLabelPoints[right](Q)
+			\tkzDrawLine(P,Q)
+		\end{tikzpicture}
+	\end{center}
+	
+	\par Ahora definamos la pendiente de esta recta secante sabiendo las coordenadas de los puntos $P$ y $Q$.
+	\begin{equation*}
+		m_s=\frac{f(x+h)-f(x)}{(x+h)-x} = \frac{f(x+h)-f(x)}{h}
+	\end{equation*}	
+
+	\par Si movemos el punto $Q$, de tal manera que $h$ sea cada vez menor tenemos el siguiente comportamiento gráficamente 
+
+	\begin{center}
+	\begin{tikzpicture}[scale=1]
+		\tkzInit[xmin=-2,xmax=7,ymin=-0.5,ymax=4.5]
+		\tkzLabelXY[orig=false]
+		\tkzDrawXY
+		\draw[domain=0:4, color=blue] plot (\x,{0.08*exp(\x)}) node[right] {$f(x)$};
+		\tkzDefPoint(2,{0.08*exp(2)}){P}
+		\tkzDefPoint(3.5,{0.08*exp(3.5)}){Q}
+		\tkzDrawPoints(P,Q)
+		\tkzLabelPoints[below](P)
+		\tkzLabelPoints[right](Q)
+		\tkzDrawLine(P,Q)
+		\tkzDefPoint(3.2,{0.08*exp(3.2)}){Q1}
+		\tkzDefPoint(2.8,{0.08*exp(2.8)}){Q2}
+		\tkzDrawPoints(Q1,Q2)
+		\tkzDrawLine[add = 0.5 and 0.5](P,Q1)
+		\tkzDrawLine[add= 1 and 1](P,Q2)
+	\end{tikzpicture}
+	\end{center}	
+
+	\par Si acercamos $Q$ hasta el punto donde $P$ y $Q$ sean iguales, encontraremos que $h$ se hace $0$ y por tanto es imposible apoyar una recta conociendo solo un punto, para poder encontrar una recta que solo toque en un punto a la curva en cuestión es necesario estudiar como se comporta la pendiente cuando $h$ se hace cada vez mas pequeño, esto lo logramos mediante el limite, de tal forma que la pendiente de la recta tangente se puede escribir como:
+	\begin{equation*}
+		m_t=\lim_{h\to \infty} \frac{f(x+h)-f(x)}{h}
+	\end{equation*}
+
+	\par Es necesario que el limite exista para poder encontrar una recta tangente, es decir que el valor del limite sea un número real. De esta manera mediante el punto fijo $P$ y la pendiente podemos definir la recta tangente a la curva $f(x)$. Graficamente esto luce así.
+
+	\begin{center}
+	\begin{tikzpicture}[scale=1]
+		\tkzInit[xmin=-2,xmax=7,ymin=0,ymax=4.5]
+		\tkzLabelX[orig=false]
+		\tkzLabelY[orig=false]
+		\tkzDrawXY
+		\tkzFct[color=blue,domain=0:4]{0.08*exp(x)}
+	\end{tikzpicture}
+	\end{center}	
+
+	\par Esta expresión ha tenido tanta importancia que ahora se le asignado un nombre más allá de pendiente de una recta tangente, a la operación anterior se le conoce como la derivada de una función y se enuncia como sigue.
+	
+	\begin{definición}
+		Sea $f(x)$ una función, la derivada de dicha función es otra función $g(x)$ definida mediante la expresión.
+		\begin{equation*}
+			g(x)= \lim_{h\to \infty} \frac{f(x+h)-f(x)}{h}
+		\end{equation*}
+	\end{definición}
+	
+	
+	\par	 %ortografía revisada
+	Para el desarrollo y lectura de estos apuntes es recomendable recordar las reglas de derivación más elementales para poder empezar a introducir conceptos propios del cálculo integral, para ello ofrecemos un repaso a estas reglas de derivación.
+	
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\der \ &k = 0 \\
+			\der \ &kx = k    \label{kx}\\   
+			\der \ &x^n = n \cdot x^{n-1} \label{dptx} \\
+			\der \ &\frac{1}{x^{n}} = - \frac{n}{x^{n+1}} \\
+			\der \ &u + v = u' + v'  \label{dsum} \\
+			\der \ &u - v = u' - v' \\
+			\der \ &k\cdot u = k \cdot u' \\
+			\der \ &v^n = n\cdot v^{n-1} \cdot v' \label{dvn} \\
+			\der \ &u\cdot v  = u \cdot v' + u' \cdot v \\
+			\der \ &\frac{u}{v} = \frac{u'\cdot v - v'\cdot u}{v^2} \\
+			\der \ &e^x = e^x \\
+			\der \ &e^v = e^v \cdot v' \\
+			\der \ &a^x = a^x \cdot \operatorname{ln}a \\
+			\der \ &a^v = a^v \cdot \operatorname{ln}a \cdot v' \\
+			\der \ &\operatorname{ln} |x| = \frac{1}{x} \label{dlnx} \\
+			\der \ &\operatorname{ln} |v| = \frac{v'}{v}
+		\end{align}
+	\end{minipage}
+	\begin{minipage}{0.48\textwidth}
+		\begin{align}
+			\der \ &\operatorname{log}_a x = \frac{1}{x \cdot \operatorname{ln}a} \\
+			\der \ &\operatorname{log}_a v = \frac{v'}{v\cdot 	\operatorname{ln}a} \\
+			\der \ &u(v) = u'(v) \cdot v'  \label{cadena}\\
+			\der \ &u^v = u^v \cdot \left[v'\cdot \operatorname{ln}u + \frac{u' \cdot v}{u} \right] \\
+			\der \ &\operatorname{sen}u = \operatorname{cos}u \cdot u' \\
+			\der \ &\operatorname{cos}u = -\operatorname{sen}u \cdot u' \\
+			\der \ &\operatorname{tan}u = \operatorname{sec}^2 u \cdot u' \\
+			\der \ &\operatorname{csc}u = -\operatorname{csc}u \cdot \operatorname{cot}u \cdot u' \\
+			\der \ &\operatorname{sec}u = \operatorname{sec}u 	\cdot \operatorname{tan}u \cdot u' \\
+			\der \ &\operatorname{cot}u = -\operatorname{csc}^2 u \cdot u' \\
+			\der \ &\inv{sen}u = \tfrac{u'}{\sqrt{1-u^2}} \\
+			\der \ &\inv{cos}u = -\tfrac{u'}{\sqrt{1-u^2}} \\
+			\der \ &\inv{tan}u = \tfrac{u'}{1+u^2} \\
+			\der \ &\inv{csc}u = - \tfrac{u'}{|u|\cdot \sqrt{u^2-1}}\\
+			\der \ &\inv{sec}u = \tfrac{u'}{|u|\cdot \sqrt{u^2-1}} \\
+			\der \ &\inv{cot}u = -\tfrac{u'}{1+u^2}
+		\end{align}
+	\end{minipage}
+	
+
+	\chapter{La Integral Indefinida}
+	\section{Antiderivadas}
+	\subsection{Definición}
+	\par  %ortografía revisada
+	En este punto es de esperar que el alumno este familiarizado con el concepto de operación inversa, aquellas que al aplicarse consecutivamente a una expresión  se cancelan mutuamente, tales como la suma con la resta y la multiplicación con la división, es posible deshacer el efecto de aplicar una con la otra operación. \vspace{0.6 mm}
+	\par %ortografía revisada
+	Ya hemos definido a la derivada, como la función que se obtiene al aplicar la diferenciación a una función, al igual que la suma y la multiplicación para deshacer el efecto de la diferenciación, usamos una operación inversa, llamada antidiferenciación, la cual implica el cálculo de una antiderivada. \vspace{0.6mm}
+	\par 
+	Una función $F(x)$ es antiderivada de otra función $f(x)$ si al diferenciar la función $F(x)$ obtenemos a la función $f(x)$.
+	\begin{definición}
+		$F(x)$ es una antiderivada de $f(x)$ si se cumple que $F'(x)=f(x)$.
+	\end{definición}
+	
+	\par
+	Es importante aclarar que a pesar de que en la definición se usa la letra x para denotar la variable independiente, esta comprobación es igual de valida a pesar de que la función tenga otra variable independiente. 
+	
+	\par	
+	Tomemos un ejemplo, sea $f(x)=2x$, y $F(x)=x^2$ vamos a verificar si se cumple que $F'(x)=f(x)$, obtenemos la derivada de $F(x)$ mediante la fórmula \eqref{dptx}, entonces $F'(x)=2x$ que es igual a nuestra $f(x)$, por lo tanto $F(x)$ es una antiderivada de la función $f(x)$. Veamos mas ejemplos.
+	
+	\begin{align*}
+	\ \text{Esta función es antiderivada...}&  &\text{\ \ de esta otra función} \\
+	\ x^3        			&	& 3x^2 \\
+	\ (x+5)^2    			&	& 2(x+5) \\
+	\ x^3 + 5   			&	& 3x^2 \\
+	\ 4x^3     				 &   & 12x^2 \\
+	\intertext{}
+	\ \operatorname{sen}^2 x &  & 2\cdot \operatorname{sen}x \cdot \operatorname{cos} x \\
+	\ e^x            &			& e^x
+	\end{align*}
+	\par
+	Todos los ejemplos se pueden comprobar considerando la columna izquierda como $F(x)$ y la columna derecha como $f(x)$ para verificar que $F'(x)=f(x)$ en cada fila.
+	\par 
+	Mediante los ejemplos anteriores se puede notar que una función puede tener más de una antiderivada. Tomando los ejemplos anteriores en el primer y tercer ejemplo vemos como la misma función $3x^2$ le asignamos más de una antiderivada. A diferencia de la diferenciación donde la derivada de una función es siempre una única función bien definida (que puede ser representada de diferentes maneras), el proceso para hallar antiderivadas conduce a infinitas soluciones todas igualmente válidas.
+	\par %ortografía revisada
+	De todas las antiderivadas que pueden existir para una función es posible encontrar un patrón, en el cual observamos que en lo único en lo que difieren todas y cada una de ellas es una constante. Definiendo la función $F(x)$ como antiderivada de $f(x)$ podemos sumar una constante de tal forma que $F(x)+C$ para cualquier valor constante de $C$ es una antiderivada de la función $f(x)$.
+	\[ \der F(x)+C=F'(x)+0 \]
+	Como $F(x)$ es antiderivada de $f(x)$ implica que $F'(x)=f(x)$
+	\begin{equation}
+	\der F(x)+C= f(x) \label{Ff}	
+	\end{equation}
+	\par %ortografía revisada
+	La expresión $F(x)+C$ se conoce como antiderivada general de $f(x)$, dicha constante $C$ esta ahí para denotar que nos referimos al conjunto de todas las soluciones posibles, en el ámbito del cálculo integral esta constante recibirá un nombre más adelante.
+	
+	\par
+	\subsection{Ejercicios propuestos}
+	
+	\par
+	Compruebe si dadas los siguientes pares de funciones $F$ y $f$ se cumple que $F$ es una antiderivada de $f$. Simplifique las funciones  y realice las operaciones indicadas antes de hacer la comprobación.
+	
+	\par
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{enumerate}[series=Ej1]
+			\item $F(x)=5x^2, \ f(x)=11x $ 
+			\item $F(x)=e^{3x}, \ f(x)= 3e^{3x}$
+		\end{enumerate}
+	\end{minipage}
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{enumerate}[resume*=Ej1]
+			\item $F(x)=(4x^3-5)^5 ,\ f(x)=60x^2\cdot (4x^3-5)^4$
+			\item $F(x)=x\cdot \operatorname{tan} x, \ f(x)=\operatorname{sec}^2 u $
+		\end{enumerate}
+	\end{minipage}
+	
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{enumerate}[resume*=Ej1]
+			\item $F(x)=\operatorname{ln} |4x^2|, \ f(x)=\tfrac{2}{x}$
+			\item $F(x)=\der \ \operatorname{sen} x, \ f(x)= \der \operatorname{cos} x $
+			\item $F(x)=\der \ \operatorname{cos} x, \ f(x)= \der \operatorname{sen} x $
+			\item $F(x)=\pi^2, \ f(x)= 0 $
+		\end{enumerate}
+	\end{minipage}
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{enumerate}[resume*=Ej1]
+			\item $F(x)= 6^{e^x} + 20, \ f(x)=6^{e^x} \cdot \operatorname{ln} 6 \cdot e^x $
+			\item$F(v)= \der \ e^v, \ f(v)= \operatorname{ln} v$
+			\item $F(t)= \operatorname{sec}^2 t, f(t)=\operatorname{tan} t $
+			\item $F(x)=x^x, \ f(x)= e^x(10-5x^2)$
+		\end{enumerate}
+	\end{minipage}
+			\section{Notación}
+	\par %ortografía revisada
+	Así como para la diferenciación tenemos un operador $\der$ para realizar el proceso de encontrar una derivada, para hallar antiderivadas se tiene el signo integral $\int$ el cual servirá para indicar el proceso de encontrar antiderivadas. Dada la naturaleza inversa de estos procesos podríamos deducir que la siguiente expresión es correcta.
+	\[ \int \der \ f(x)=f(x) \]
+	\par %ortografía revisada
+	Si bien esta expresión reflejaría la naturaleza inversa de dichas operaciones, esta expresión tiene dos problemas, observe que cuando el operador diferencial esta precedido por el símbolo integral, estos no son del todo cancelativos entre sí. La idea que transmite la expresión es el encontrar una antiderivada para la derivada de la función $f(x)$, sin más información no podemos asignar solamente una antiderivada por lo cual recurrimos a la expresión general para antiderivadas que vimos recientemente. Expresándalo de esta forma.
+	\[ \int \der \ f(x) = f(x) +C \]
+	\par %ortografía revisada
+	Ahora bien el segundo detalle que podemos encontrar es que si bien dicha expresión esta correcta en la practica la notación para dicha operación es como se muestra a continuación.
+	\begin{equation}
+	\int d(f(x)) = f(x) + C \label{id}
+	\end{equation}
+	\par %ortografía revisada
+	Es decir expresando la derivada en su forma diferencial, que hemos visto que se obtiene multiplicando la derivada de una función por el diferencial de la variable independiente. Esta notación expresando la derivada en forma de un diferencial se la debemos a Gottfried Leibniz.
+	
+	\par %ortografía revisada
+	Retomemos lo planteado en \eqref{Ff}.
+	\begin{equation*}
+	\der \ F(x)+C=f(x)
+	\end{equation*}
+	\par %ortografía revisada
+	Expresemos en forma de diferencial la expresión \eqref{Ff} 
+	\begin{flalign*}
+	\der \ F(x) + C &= f(x) \\
+	dx \ \left(\der \ F(x)+C \right) &= (f(x)) \ dx  &// \text{ Multiplicando por } dx \\
+	d \ (F(x)+C) &= f(x) \ dx          &// \text{ Simplificando} \\
+	\inti{}{(F(x)+C)} &= \inti{f(x) \ }{x}  &// \text{ Aplicando el signo integral} \\
+	\inti{f(x) \ }{x} &= \inti{}{(F(x)+C)}     &// \text{ Transponiendo términos} \\
+	\intii{f(x) \ }{F(x)}{&}{x}              &// \text{ Resolviendo el miembro derecho por \eqref{id}}   
+	\end{flalign*}
+	
+	\par %ortografía revisada
+	Nótese que para resolver $\int{d(F(x)+C)} $ aplicando \eqref{id} debimos de sumar nuevamente una constante, dado que el sumar dos constante es igual a otra constante, se expresa la suma de esas dos constantes como una única constante. Analizando la última expresión del bloque anterior concluimos que conociendo la derivada de una función, podemos encontrar su antiderivada general, ahora estamos en condiciones de asignarle un nombre y una notación a este proceso. Conoceremos al proceso de obtener la antiderivada general como integración indefinida. Y su notación la tomamos del miembro izquierdo de nuestra última expresión, ahora también podemos asignar un nombre a cada parte de la notación.
+	
+	\[ \underbrace{\int}_{(1)} \overbrace{f(x)}^{(2)} \underbrace{dx}_{(3)}  \]
+	\par %ortografía revisada
+	Donde
+	\begin{align*}
+	(1) &= \text{Simbolo integral} \\
+	(2) &= \text{Función integrando} \\
+	(3) &= \text{Diferencial de la variable independiente} 
+	\end{align*}
+	\par
+	La notación anterior se lee como "la integral indefinida de f de x con respecto a x" \ y el resultado se expresa en forma de antiderivada general sumando la constante de integración. A partir de ahora a la integración indefinida por simplicidad la llamaremos únicamente integración. Otra cosa a mencionar es que la constante $C$ en el contexto del cálculo integral se llama constante de integración.
+	\subsection{Convenciones y ventajas de la notación}
+	\par
+	La notación que se ha elegido históricamente para la integral indefinida trae ventajas practicas. Observe el siguiente ejemplo.
+	\[ \int t\cdot u \]
+	\par
+	Tanto $t$ como $u$ son letras que usualmente podemos utilizar como variables, sin mayor contexto no es posible determinar cual de las dos debe de ser integrada, para ello es que se utiliza la notación de Leibniz que permite indicar con respecto de que variable se debe realizar el proceso de integración. Por ejemplo en el siguiente caso.
+	\begin{align*}
+	\inti{t \cdot u \ }{u} \\
+	\inti{t \cdot u \ }{t}
+	\end{align*}
+	
+	\par 
+	Aquí queda claro que en la primera integral $u$ es la variable de integración y $t$ debe ser considerada como una constante a fines del proceso de integración. Esta necesidad implícita de declarar la variable de integración permite entender cualquier integral sin recurrir al contexto para poder resolverla.
+	
+	\section{Fórmulas de integración}
+	\par %ortografía revisada
+	Como hemos dicho la integración indefinida y la diferenciación guardan amplia relación entre ellas, a grado de tal de que seremos capaces de obtener un conjunto de reglas para aplicar nuestro proceso de integración a partir de las fórmulas de diferenciación.
+	\par %ortografía revisada
+	Hemos dicho que conociendo la derivada de una función podremos integrar y obtener su antiderivada general, para buscar la integral de una constante entendemos que lo que buscamos es saber qué forma tienen las funciones que tienen como derivada de una constante. Podemos ver que la fórmula \eqref{kx} nos dice que la función $kx$ tiene como derivada justamente a una constate. Ahora nos dedicaremos a deshacer el efecto de aplicar la diferenciación sobre $kx$ en el siguiente proceso.
+	\begin{flalign*}
+	\der \ kx &= k  & //\text{ Fórmula } \eqref{kx} \\
+	dx \ \left( \der \ kx \right)   &= (k) \ dx  &//\text{ Multiplicando a ambos lados por } dx \\
+	d(kx) &= k \ dx   &// \text{ Simplificando}
+	\intertext{Ahora hemos obtenido el diferencial de la función $kx$ y podemos aplicar el símbolo integral a ambos lados del diferencial. }
+	\inti{}{(kx)} &= \inti{k \ }{x}  &//\text{ Colocando el simbolo integral} \\
+	\inti{k \ }{x} &= \inti{}{(kx)}  &// \text{ Transponiendo términos} \\
+	\inti{k \ }{x} &= kx + C  &// \text{ Simplificando el lado derecho de la igualdad} \\
+	&  &\text{ mediante \eqref{id}}
+	\end{flalign*}
+	\par
+	Así obtenemos nuestra segunda fórmula de integración
+	\begin{align*}
+	\intii{k \ }{kx}{}{x}
+	\end{align*}
+	\par
+	De lo cual podemos observa una propiedad que podemos aplicar ya que al igual que en la diferenciación, en la integración el resultado de integrar con un factor constante es igual si este queda dentro del signo integral o sí se saca fuera del signo. Por lo que podemos escribir
+	\[ \inti{k \ }{x} = k \cdot \inti{ }{x} \]
+	
+	\par
+	Puntualizaremos en otros casos más. Para encontrar una fórmula de integración que se relacione con \eqref{dptx} recuperemos dicha fórmula.
+	
+	\begin{flalign*}
+	\der \ x^n &= n\cdot x^{n-1} &//\text{ Fórmula \eqref{dptx}} \\
+	dx \left( \der \ x^n\right)  &= (n\cdot x^{n-1}) \ dx &// \text{ Multiplicando a ambos lados por } dx \\
+	d(x^n) &= (n\cdot x^{n-1}) \ dx &// \text{ Simplificando} \\
+	\inti{}{(x^n)} &= \inti{(n \cdot x^{n-1}) \ }{x} &// \text{ Colocando el simbolo integral} \\
+	\inti{ (n\cdot x^{n-1} \ )}{x} &= \inti{}{(x^n)} &//\text{ Transponiendo términos} \\
+	\intii{n \cdot x^{n-1} \ }{ x^n}{&}{x} &// \text{ Simplificando el lado derecho con \eqref{id} } \\
+	n \intii{x^{n-1} \ }{x^n}{&}{x} &//\text{ Sacando } n \text{ de la integral} \\
+	\intii{x^{n-1}}{\frac{x^n}{n}}{&}{x} &// \text{ Pasando al lado derecho } n 
+	\intertext{Si bien hemos llegado a una fórmula, esta no suele estar expresada asi, ahora considere reemplazar $n$ por $n+1$ en cada aparición de n, este cambio no afectara la integral puesto que sustituiremos en todas las apariciones de $n$ a ambos lados }
+	\intii{x^{(n+1)-1}}{\frac{x^{n+1}}{n+1}}{&}{x} &//\text{ Reemplazando } n \text{ por } n+1
+	\end{flalign*}
+	
+	\par
+	Aplicando este cambio y simplificando obtenemos una fórmula más de integración.
+	\[ \intii{x^n \ }{ \frac{x^{n+1}}{n+1}}{}{x} \]
+	
+	\par
+	Probemos nuestra formula en el caso en que $n=-1$, reemplazando en la formula obtenemos lo siguiente.
+	\begin{flalign*}
+	\intii{x^{-1}}{ \frac{x^{-1+1}}{-1+1} }{&}{x} \\
+	\intii{x^{-1}}{\frac{x^{0}}{0}}{&}{x}
+	\end{flalign*}
+	
+	\par
+	A partir de aquí resulta innecesario continuar simplificando ya que hemos obtenido del lado derecho de nuestra integral una indeterminación, nuestro denominador es $0$, ¡No podemos dividir entre $0$!, ya que su resultado no esta definido.
+	
+	\par
+	Es decir que esta formula es valida siempre que $n$ sea distinto a $-1$ porque al resolver con ese valor de n, provoca que una indeterminación. Por lo cual al expresar esta formula diremos que es valida para todo $n\neq -1$ ($\forall n \neq -1$).
+	
+	\par
+	Si queremos estudiar el caso cuando $n=-1$ obtendremos dicha formula de integración de la derivada de $\operatorname{ln} x$ \eqref{dlnx}. Haciendo un proceso similar a los ya hechos hasta ahora obtenemos esta formula.
+	\[ \intii{x^{-1} \ }{ln|x|}{}{x} \]
+	
+	\par
+	Ahora evaluemos la integral de una suma de funciones, para ellos definiremos $u=\der U$ y $v= \der V$, esto conduce a lo siguiente.
+	\begin{flalign*}
+	\der (U+V) &= \der U + \der V  &// \text{ Formula \eqref{dsum} en notación de Leibniz} \\
+	\der(U+V) &= u + v &// \text{ Usando la definición de u y v} \\
+	dx \left( \der (U+V) \right)  &= (u+v) \ dx &// \text{ Multiplicando a ambos lados por } dx \\	
+	d(U+V) &= (u+v) \ dx &// \text{ Simplificando} \\
+	\inti{ }{(U+V)} &= \inti{(u+v)\ }{x}	&// \text{ Colocando el simbolo integral} \\
+	\inti{(u+v)\ }{x} &= \inti{ }{(U+V)} &// \text{ Transponiendo términos} \\
+	\inti{(u+v)\ }{x} &= U+V+C 		&// \text{ Resolviendo el miembro derecho por \eqref{id}}
+	\intertext{Ahora podemos separar la constante $C$ en dos constantes arbitrarias $C_1$ y $C_2$ de tal forma que $C=C_1+C_2$, esto con el fin de poder realizar lo siguiente}
+	\inti{(u+v) \ }{x} &= (U+C_1) + (V+C_2) &// \text{ Separando la constante} \\
+	\inti{(u+v) \ }{x} &= \inti{}{U} + \inti{ }{V} &// \text{ Escribiendo el lado derecho mediante \eqref{id}}
+	\intertext{Ahora podemos observar que $dU = u \cdot dx$ y $dV = v \cdot dx$ por lo que podemos reemplazar en la integral de forma tal que obtenemos}
+	\inti{ (u+v) \ }{x} &= \inti{u \ }{x} + \inti{v\ }{x} &// \text{ Reemplazando en las integrales del lado derecho}
+	\end{flalign*} 
+	
+	\par
+	Por lo tanto obtenemos que la integral de la suma de dos funciones es equivalente a la suma de las integrales de cada una de las funciones, expresado de esta forma.
+	\[ \inti{(u+v) \ }{x} = \inti{u \ }{x} + \inti{v\ }{x} \]
+	
+	\subsection{Tabla de integrales}
+	\par
+	Para el resto de fórmulas se aplica el mismo procedimiento, encontrar el diferencial de la función e integrar, por lo tanto no entraremos a realizar el procedimiento y enunciaremos directamente las fórmulas de integración. Recuerde que hemos obtenido estas formulas por medio de las fórmulas para calcular derivadas.
+
+	\par
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{align}
+		\intii{ }{x}{&}{x} \label{idx} \\
+		\intii{0 \ }{ }{&}{x} \\
+		\intii{k \ }{k \cdot x}{&}{x} \\
+		\intii{x^n \ }{ \frac{x^{n+1}}{n+1}}{&}{x}, \forall n \neq -1 \label{ixn} \\
+		\intii{x^{-1} \ }{\operatorname{ln} |x|}{&}{x} \label{ix-1} \\
+		\inti{(u+v)}{x} &= \inti{u\ }{x} + \inti{v \ }{x}  \label{i+}\\
+		\inti{(u-v)}{x} &= \inti{u\ }{x} - \inti{v \ }{x} \\
+		\inti{k \cdot x \ }{x} &= k\cdot \inti{x\ }{x}  \label{ikx}\\
+		\intii{a^x \ }{ \frac{a^x}{\operatorname{ln}a}}{&}{x} \\
+		\intii{e^x \ }{e^x}{&}{x}
+		\end{align}
+	\end{minipage}
+	\begin{minipage}[t]{0.48\linewidth}
+		\begin{align}
+		\intii{\cos x \ }{\operatorname{sen} x}{&}{x} \\
+		\intii{\operatorname{sen} x \ }{-\operatorname{cos}x}{&}{x} \\
+		\intii{\operatorname{sec}^2 x \ }{\operatorname{tan} x}{&}{x} \\
+		\intii{\operatorname{sec}^2 x \ }{ \operatorname{tan} x}{&}{x} \\
+		\intii{\operatorname{csc}^2 x \ }{- \operatorname{cot} x}{&}{x} \\
+		\intii{(\operatorname{csc} x \cdot \operatorname{cot} x) \ }{-\operatorname{csc} x \ }{&}{x} \\
+		\intii{(\operatorname{sec} x \cdot \operatorname{tan} x) \ }{ \operatorname{sec} x \ }{&}{x} \\
+		\intii{\frac{1}{\sqrt{1-x^2}}\ }{\inv{sen}x}{&}{x} \\
+		\intii{\frac{1}{1+x^2}\ }{\inv{tan}x}{&}{x} \\
+		\intii{\frac{1}{x \cdot \sqrt{x^2-1} }\ }{\inv{sec}x}{&}{x}
+		\end{align}
+	\end{minipage}
+	
+	\subsection{Comprobación de formulas y resultados}
+	
+	\par
+	Ahora que hemos enunciado las reglas de integración es natural cuestionarse como es posible comprobar dichas formulas y como es posible comprobar que la resolución de una integral es correcta. Para esto ya hemos hablado de lo que sucede si se encuentra el símbolo integral antes del operador diferencial o de un diferencial, ahora toca ver el caso contrario, la derivada de una integral indefinida.
+	
+	\par
+	Hasta el momento partiendo de \eqref{Ff} y aplicando el signo integral obtuvimos la siguiente expresión.
+	\begin{flalign*}
+	\intii{f(x) \ }{F(x)}{}{x} & & //\text{ Se parte de considerar que } \der F(x)+C= f(x)
+	\end{flalign*}
+	
+	
+	\par
+	Ahora para evaluar la derivada de una integral indefinida podemos hacer lo siguiente. 
+	\begin{align*}
+	\der \intii{f(x) \ }{\der \ F(x)}{}{x}
+	\end{align*}
+	
+	\par
+	De momento no nos es posible evaluar la parte izquierda de la expresión, pero si podemos encontrar la derivada del lado derecho con \eqref{Ff}, con lo cual obtenemos.
+	\begin{equation}
+	\der \ \inti{f(x) \ }{x} = f(x) \label{dix}
+	\end{equation}
+	\par
+	Entonces podemos concluir que la derivada de una integral indefinida es igual a la función integrando. De aquí podemos observar que si diferenciamos nuestro resultado de resolver una integral indefinida debemos obtener la función integrando para que el resultado sea correcto.
+	
+	\par
+	Podemos comprobar, por ejemplo, la formula \eqref{ixn} considerando lo dicho en el párrafo anterior.
+	
+	\begin{flalign*}
+	\intii{x^n}{\frac{x^{n+1}}{n+1}}{&}{x} & //\text{ Formula \eqref{ixn}} \\
+	\der \ \intii{x^n}{\der \ \frac{x^{n+1}}{n+1}}{&}{x} & //\text{ Colocando el operador diferencial a ambos lados} \\
+	x^n &= (n+1) \cdot \frac{x^{n+1-1}}{n+1} & //\text{ Resolviendo el lado izquierdo con \eqref{dix}} \\
+	& &  \text{y diferenciando el lado derecho} \\
+	x^n &= x^n & //\text{ Simplificando} 
+	\end{flalign*}
+	
+	\par
+	Comprobar el resto de formulas sigue el mismo proceso y realizarlo en este texto resultaría tedioso, aunque el alumno podría darse a la tarea de comprobar cada una de las formulas que hemos propuesto.
+	
+	\section{Integrales básicas}
+	\par
+	Contrario al proceso de diferenciación donde a partir de una serie de formulas podíamos obtener una infinidad de derivadas, el proceso de integración es mucho más complejo, ya que a partir de estas reglas de integración podemos resolver un número limitado de integrales, en esta sección trabajaremos con las integrales mas elementales.
+	
+	
+	\subsection{Integrales de funciones algebraicas}
+	
+	\par
+	Ha llegado el momento de aplicar las formulas deducidas en la sección anterior. Por ejemplo veamos los siguientes ejemplos. NOTA: Se ha omitido la constante de integración en los pasos intermedios.
+	
+	\paragraph{Ejemplo 1. Integral de un diferencial}
+	\begin{flalign*}
+	\intii{}{t}{&}{t} &// \text{ Resolviendo mediante \eqref{idx}}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 2. Integral de un monomio}
+	\begin{flalign*}
+	\inti{\frac{x^5}{4}\ }{x} &= \frac{1}{4} \cdot \inti{x^5 \ }{x}   & // \text{ Aplicando \eqref{ikx} para sacar la constante del signo integral } \\
+	&= \frac{1}{4} \cdot \frac{x^{5+1}}{5+1 } & // \text{ Aplicando \eqref{ixn} para resolver la integral} \\
+	&= \frac{1}{4} \cdot \frac{x^6}{6} = \frac{x^6}{24} & // \text{ Simplificando el resultado} \\
+	\intii{\frac{x^5}{4} \ }{\frac{x^6}{24}}{&}{x}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 3. Integral de una suma}
+	\begin{flalign*}
+	\inti{(x^3+x^{-2}) \ }{x} &= \inti{x^3\ }{x} + \inti{x^{-2}\ }{x}  & // \text{ Separando en dos integrales mediante \eqref{i+}} \\
+	&= \frac{x^{3+1}}{3+1} + \frac{x^{-2+1}}{-2+1} &// \text{ Resolviendo las dos integrales  con \eqref{ixn}} \\
+	&= \frac{x^4}{4} - \frac{x^{-1}}{1}  &// \text{ Simplificando el resultado}
+	\intertext{Adicionalmente podemos colocar $x^{-1}$ pasando el término al denominador como $x$}
+	\intii{(x^3+x^{-2}) \ }{\frac{x^4}{4} - \frac{1}{x}}{&}{x}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 4. Integral con exponentes fraccionarios}
+	\begin{flalign*}
+	\inti{ \sqrt{\sqrt[3]{t}} \ }{t}  &= \inti{(t^{\frac{1}{3}})^{\frac{1}{2}}\ }{t} &// \text{ Colocando las raíces como exponentes}  \\
+	&= \inti{t^{\frac{1}{6}}\ }{t} &// \text{ Simplificando el exponente} \\
+	&= \frac{t^{\frac{1}{6}+1}}{\frac{1}{6}+1} &// \text{ Resolviendo con \eqref{ixn}} \\
+	&= \frac{t^{\frac{7}{6}}}{\frac{7}{6}} = \frac{6}{7}  \cdot t^{\frac{7}{6}} &// \text{ Simplificando las sumas de fracciones} \\
+	\intii{\sqrt[3]{\sqrt{t}} \ }{\frac{6}{7}  \cdot t^{\frac{7}{6}}}{&}{t}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 4. Integral de una división de monomios}
+	\begin{flalign*}
+	\inti{\frac{x^8}{x^9}\ }{x} &= \inti{x^{8-9}\ }{x} &// \text{ Realizando la división de monomios} \\
+	&= \inti{x^{-1}\ }{x} &// \text{ Simplificando el exponente} \\
+	&= \ln |x| &// \text{ Integrando mediante \eqref{ix-1}} \\		
+	\intii{\frac{x^8}{x^9}\ }{ \ln |x|}{&}{x}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 5. Integral de un polinomio entre un monomio}
+	\begin{flalign*}
+	\intertext{Ahora separamos el integrando en una suma de términos con un común denominador para poder separar en cuatro integrales}
+	\inti{\frac{x^7+x^6+2x^5+4x^3}{x^2}\ }{x} &= \inti{\frac{x^7}{x^2}\ }{x} + \inti{\frac{x^6}{x^2}\ }{x} + \inti{\frac{2x^5}{x^2}\ }{x} + \inti{\frac{4x^3}{x^2}}{x} & \phantom{//} \\
+	\intertext{Aplicando \eqref{ikx} para sacar las constantes fuera de las ultimas 2 integrales}
+	&= \inti{\frac{x^7}{x^2}\ }{x} + \inti{\frac{x^6}{x^2}\ }{x} + 2\cdot \inti{\frac{x^5}{x^2}\ }{x} + 4 \cdot \inti{\frac{x^3}{x^2}\ }{x} & \phantom{//} \\
+	&= \inti{x^{7-2}\ }{x} + \inti{x^{6-2}\ }{x} + 2\cdot \inti{x^{5-2}\ }{x} + 4\cdot \inti{x^{3-2}\ }{x} &// \text{ Restando exponentes} \\
+	&= \inti{x^5 \ }{x} + \inti{x^4 \ }{x} + 2\cdot \inti{x^3 \ }{x} + 4\cdot \inti{x \ }{x} &// \text{ Simplificando exponentes} \\
+	&= \frac{x^6}{6} + \frac{x^5}{5} + 2\cdot \frac{x^4}{4} + 4\cdot \frac{x^2}{2} &//  \text{ Aplicando \eqref{ixn}} \\
+	&= \frac{1}{6} \cdot x^6 + \frac{1}{5} \cdot x^5 + \frac{1}{2} \cdot x^4 + 2\cdot x^2 &// \text{ Simplificando el resultado} \\
+	\intii{\frac{x^7+x^6+2x^5+4x^3}{x^2}\ }{\frac{1}{6} \cdot x^6 + \frac{1}{5} \cdot x^5 + \frac{1}{2} \cdot x^4 + 2\cdot x^2}{&}{x}
+	\end{flalign*}
+
+	\paragraph{Ejemplo 6. Integral de un producto}
+	\begin{flalign*}
+	\inti{(x-5)(x^2-4) \ }{x} &= \inti{(x^3-5x^2-4x+20)\ }{x} &// \text{ Realizando el producto} \\
+	&= \inti{x^3 \ }{x} + \inti{-5x^2 \ }{x} + \inti{-4x \ }{x} + \inti{20\ }{x} &// \text{ Separando en 4 integrales} \\
+	&= \inti{x^3 \ }{x} -5 \inti{x^2\ }{x} -4 \inti{x\ }{x} + \inti{20\ }{x} &// \text{ Sacando las constantes con \eqref{ikx}} \\
+	&= \frac{x^4}{4} - 5 \cdot \frac{x^3}{3} -4\cdot \frac{x^2}{2} + 20x &// \text{ Resolviendo con \eqref{ixn}} \\
+	&= \frac{1}{4} \cdot x^4 - \frac{5}{3} \cdot x^3 - 2x^2 + 20x &// \text{ Simplificando} \\
+	\intii{(x-5)(x^2-4) \ }{\frac{1}{4} \cdot x^4 - \frac{5}{3} \cdot x^3 - 2x^2 + 20x}{&}{x}
+	\end{flalign*}
+	
+	\paragraph{Ejemplo 7. Integral de un binomio al cuadrado por expansión del binomio.}
+	Ahora veremos como evaluar la integral de un binomio al cuadrado por expansión, esta es una forma de hacerlo, para binomios con grado mayor es normal recurrir a un nuevo método que veremos mas adelante. 
+	\begin{flalign*}
+		\inti{(x+y)^2 \ }{x} &= \inti{(x^2+2xy+y^2) \ }{x} &// \text{ Expandiendo el binomio} \\
+		&= \inti{x^2\ }{x} + \inti{2xy\ }{x} + \inti{y^2\ }{x} &// \text{ Separando en 3 integrales} \\
+		&= \inti{x^2\ }{x} +2y\cdot \inti{x\ }{x} + y^2 \inti{ }{x} &// \text{ Sacando las constantes fuera} \\
+		&= \frac{x^3}{3} + 2y \cdot \frac{x^2}{2} + y^2 \cdot x &// \text{ Integrando mediante \eqref{ixn} y \eqref{idx}} \\
+		&= \frac{1}{3} \cdot x^3 + x^2y + xy^2 &// \text{ Simplificando el resultado} \\
+		\intii{(x+y)^2 \ }{\frac{1}{3} \cdot x^3 + x^2y + xy^2}{&}{x} 
+	\end{flalign*}
+	\par Notese que la $y$ fue tratada como un valor constante dado que el diferencial indicaba que la variable de integración era $x$.
+	
+	\paragraph{Ejemplo 8. Integral de una división de polinomios}
+	\begin{flalign*}
+		\inti{\frac{x^3-4x^2+8x-5}{x-1}\ }{x} &= \inti{(x^2-3x+5)\ }{x} &//\text{ Realizando la división de polinomios}
+		\intertext{\polylongdiv{x^3-4x^2+8x-5}{x-1}}
+		&= \inti{x^2\ }{x} + \inti{-3x \ }{x} + \inti{5\ }{x}  &//\text{ Separando en 3 integrales} \\
+		&= \inti{x^2\ }{x} - 3\inti{x\ }{x} + 5\inti{}{x} &// \text{ Sacando las constantes} \\
+		\intertext{}
+		&= \frac{x^3}{3} - 3 \cdot \frac{x^2}{2} + 5x &// \text{ Integrando mediante \eqref{ixn}} \\
+		&= \frac{1}{3}\cdot x^3 -\frac{3}{2} \cdot x^2 + 5x &// \text{ Simplificando} \\
+		\intii{\frac{x^3-4x^2+8x-5}{x-1}\ }{\frac{1}{3}\cdot x^3 -\frac{3}{2} \cdot x^2 + 5x}{x}{&}
+	\end{flalign*}	
+	\subsection{Ejercicios propuestos}
+	
+	\par Resuelva las siguientes integrales indefinidas.
+
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{enumerate}[series=Ej2]
+			\item $\inti{x^{-6}\ }{x}$
+			\item $\inti{x^{\frac{2}{3}}\ }{x}$
+			\item $\inti{\frac{x^2+x^3-2x^5}{x}\ }{x}$
+			\item $\inti{(x^4-x^2)\ }{x}$
+			\item $\inti{\frac{x^5-2x^3+x}{x-1}\ }{x}$
+		\end{enumerate}
+	\end{minipage}
+	\begin{minipage}[t]{0.48\textwidth}
+		\begin{enumerate}[resume*=Ej2]
+			\item $\inti{\sqrt[4]{x^2}\ }{x}$
+			\item $\inti{(x-1)(x+y)\ }{x}$
+			\item $\inti{(x-y^2)\ }{y} $
+			\item $\inti{(w-k)^3\ }{w}$ 
+		\end{enumerate}
+	\end{minipage}
+	\chapter{Técnicas de Integración}
+	\par Hasta el momento hemos utilizado solo algunas de nuestras fórmulas para resolver ejercicios, más adelante usaremos todas y cada una de ellas, pero antes de continuar es importante ver que existen integrales de apariencia dócil que van más allá de las fórmulas que hemos obtenido en nuestra tabla de integrales, como ya habíamos dicho a pesar de que la diferenciación y la integración son esencialmente procesos inversos, la naturaleza de la integración hace que sea necesario aplicar métodos adicionales a la fórmulas para obtener resultados, toda el área que se dedica a la búsqueda de expresar integrales complicadas en otra forma equivalente que se pueda resolver por medio de las fórmulas se conocen como técnicas o métodos de integración.
+	
+	\section{Integración por sustitución o cambio de variable}
+	\par El primer método que veremos, conocido como integración por sustitución o cambio de variable tiene su sustento en la regla de la cadena \eqref{cadena}, y a continuación veremos de que trata y como aplicarlo. Recordemos primero la regla de la cadena.
+	\begin{equation*}
+		\der U(V(x)) = \der[V] U(V(x)) \cdot \der V(x)
+	\end{equation*}
+
+	\par De aquí observamos que $V$ es una función de $x$ y que $U$ es una función de $V$, ahora buscaremos deshacer la diferenciación, es decir encontraremos una antiderivada para $\der U(V(x)) \cdot \der V(x)$, recordando que ya habíamos hecho proceso parecidos cuando encontramos formulas de integración.
+	
+	\par Primero definiremos dos nuevas funciones; $u(V)=\der[V] U(V(x))$ y $v(x)=\der V(x)$, lo anterior implica que  $dU(V(x))$ es igual a  $u(V) \cdot dV$.
+	
+	\begin{flalign*}
+		\der U(V(x)) &= \der[V] U(V(x)) \cdot \der V(x) &// \text{ Regla de la cadena \eqref{cadena}} \\
+		\der U(V(x)) &= u(V) \cdot v(x) &// \text{ Aplicando la definición de u y v} \\
+		dx\left(  \der U(V(x))\right)  &= (u(V)\cdot v(x)) dx &// \text{ Multiplicando a ambos lados por $dx$} \\
+		dU(V(x)) &= u(V) \cdot v(x) dx &// \text{ Simplificando} \\
+		u(V) \cdot dV &=u(V) \cdot v(x) dx &// \text{ Sustituyendo $dU(V(x))$}
+		\intertext{}
+		\inti{u(V)\ }{V} &= \inti{u(V)\cdot v(x)\ }{x} &// \text{ Colocando el simbolo integral} \\
+		 \inti{u(V)\cdot v(x)\ }{x} &= \inti{u(V)\ }{V} &// \text{ Transponiendo terminos} \\
+		 \inti{u(V(x))\cdot v(x)\ }{x} &=\inti{u(V)\ }{V} &// \text{ Aplicando a V como función de x}
+	\end{flalign*}
+	\par Analicemos la parte izquierda de la igualdad que hemos encontrada, $\inti{u(V(x))\cdot v(x)\ }{x}$, ya que $u$ es una función de $V$ y que $V$ es una función de $x$, $u$ puede ser escrita unicamente en términos de la variable x, por lo cual podemos pensar que tanto $u$ como $v$ pueden ser escritos en función de $x$ por lo tanto la integral solo contiene a $x$ lo que expresamos al decir que la integral queda en términos de $x$.
+	\par En el lado derecho $\inti{u(V)\ }{V}$ dejamos expresada a $u$ en términos de $V$ por lo que la variable de integración es precisamente $V$, esta integral decimos que esta en términos de V.
+	\par Ahora podemos transformar una integral en términos de $x$ a otra en términos de una función $V(x)$ con el fin de facilitar el proceso de integración. Estas transformaciones están basada en elegir una función $V(x)$ apropiada para facilitar el proceso, a este proceso de encontrar una nueva variable o función es lo que conocemos como cambio de variable. 
+	\par Para hacer esa transformación podemos hacer lo siguiente.
+	
+	\subsubsection{Pasos para el cambio de variable}
+	\begin{enumerate}
+		\item Definir una nueva variable en términos de la variable de integración original, generalmente $v$ en términos de $x$.
+		\item Despejar la variable de integración original en términos de la nueva variable, generalmente despejar $x$ en función de $v$.
+		\item Calcular progresivamente el diferencial de la variable original en función del diferencial de la nueva variable y la variable nueva en si misma, generalmente encontrar $dx$ en términos de $du$ y $u$.
+		\item Sustituir en la integral para expresarla en términos de la nueva variable, generalmente dejar la integral en terminos de $v$.
+		\item Integrar en términos de $v$.
+		\item Simplificar el resultado.
+		\item Deshacer el cambio de variable en el resultado final.
+	\end{enumerate}
+	
+	\par Intentemos realizar la siguiente integral; $\inti{(x^2\cdot 2x)\ }{x}$, en primera instancia y conforme a lo que hemos aprendido suena tentador mandar fuera de la integral al 2 y multiplicar $x$ por $x^2$, lo cual resulta en la integral $2\inti{x^3\ }{x}$ que al resolverla obtenemos $\frac{1}{2} \cdot x^4$. Esta no es la única manera de resolverla y tomaremos como ejemplo esta integral para llevar acabo el método del cambio de variable. En general no arroje ninguna constante fuera hasta terminar el paso 4 en el método del cambio de variable.
+	\paragraph{Ejemplo 1. Integral de una función por su derivada}
+	\begin{equation*}
+		\inti{x^2\cdot 2x\ }{x}
+	\end{equation*}	
+	\paragraph{Paso 1.} Podemos notar que la derivada de $x^2$ es $2x$, por lo cual un cambio de variable apropiado es $v=x^2$, con lo cual tenemos realizado el paso 1.
+	\paragraph{Paso 2.} En el paso 2 haremos el siguiente despeje
+		\begin{align*}
+		v&=x^2 \\
+		x&=\sqrt{v}
+	\end{align*}
+	\paragraph{Paso 3.} Para este paso tenemos que obtener progresivamente el diferencial de x, podemos realizar el procedimiento con cualquiera de las 2 expresiones anteriores, $v=x^2$ o  con $x=\sqrt{v}$, en este caso la primer expresión es mas fácil de trabajar para encontrar el diferencial, proceso que haremos a continuación. Si antes de obtener el diferencial de x encuentra una expresión que este dentro de la integral puede detener el proceso en ese paso.
+		\begin{align*}
+		v &=x^2 \\
+		\der\ v &= \der\ x^2	\\
+		\der\ v &= 2x \\
+		dv &= 2x \cdot dx \\ 
+		\intertext{Nos hemos detenido en este paso ya que $2x \cdot dx$ es parte la integral por lo cual ya no es necesario continuar el proceso.}
+		\end{align*}
+	\paragraph{Paso 4.} Ahora para el paso 4 sustituimos cada expresión de la integral original por sus equivalentes en términos de v y dv.
+	\begin{align*}
+		&\int \underbrace{x^2}_{v} \underbrace{2x\ dx}_{dv} \\
+		=&\inti{v\ }{v}
+	\end{align*}
+	\paragraph{Paso 5.} Ahora toca resolver la integral encontrada en el paso 4.
+	\begin{flalign*}
+		\inti{v\ }{v} = \frac{1}{2}\ v^2  &&// \text{ Resolviendo con \eqref{idx}}
+	\end{flalign*}
+	\paragraph{Paso 6. } Ya no es posible simplificar la expresión anterior por lo que la colocamos igual.
+	\[ \intii{v\ }{\frac{1}{2}\ v^2}{}{v}  \]
+	\paragraph{Paso 7. } Ahora sabiendo que $v= \sqrt{x^2}$ reemplazamos en el resultado de la integral.
+	\begin{align*}
+		\intii{v\ }{\frac{1}{2}\ v^2}{&}{v} \\
+		\intii{(x^2\cdot 2x)\ }{\frac{1}{2} (x^2)^2}{&}{x} \\
+		\intii{(x^2\cdot 2x)\ }{\frac{1}{2}\ x^4}{&}{x}
+	\end{align*}
+
+	\par En principio resolver la integral $\inti{(x^2\cdot 2x)\ }{x}$ es más sencillo aplicando la multiplicación de términos, esto solo ha sido un ejemplo para verificar el método que hemos propuestos pero en general estas integrales no las resolveremos de esta manera, a continuación veremos integrales donde tiene más sentido aplicar una sustitución.
+	\newpage
+	\printbibliography	
+\end{document} 
