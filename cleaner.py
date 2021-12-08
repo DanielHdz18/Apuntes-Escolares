@@ -1,7 +1,7 @@
 import os
 import send2trash
 
-extensiones = ['.aux', '.bbl', '.bcf', '.blg', '.run.xml', '.synctex.gz', '.log', '.toc', '.tkzfonct.gnuplot', '.out', '.synctex(busy)']
+extensiones = ['.aux', '.bbl', '.bcf', '.blg', '.run.xml', '.synctex.gz', '.log', '.toc', '.tkzfonct.gnuplot', '.out', '.synctex(busy)','.tkzfonct.gnuplot']
 
 def main():
     print('Modulo de limpieza para archivos compilados de latex')
@@ -13,7 +13,7 @@ def main():
     print('Los siguientes archivos seran borrados:')
     Archivos_eliminables = Buscar_archivos_eliminables()
     if len(Archivos_eliminables) == 0:
-        print('\x1b[2K\r')
+        
         print('Felicidades no tienes ningun archivo por eliminar')
     else:
         confirmacion_borrado = input('¿Desea continuar con el borrado de estos archivos? (S/N)\n')
